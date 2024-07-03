@@ -4,15 +4,47 @@ const cron = require('node-cron');
 const { Worker } = require('worker_threads');
 
 const folders = [
+    //1. Watermeter
     {
-        "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA\\",
-        "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA"
+        "mainFolder": "V:\\ftpparking\\",
+        "folder": "V:\\ftpparking\\watermeter\\",
+        "name": "waterMeterArsip"
     },
     {
-        "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\IMAGE\\",
-        "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA\\IMAGE"
+        "mainFolder": "V:\\ftpparking\\",
+        "folder": "V:\\ftpparking\\data\\",
+        "name": "kamaeraCCTVArsip"
+    },
+    {
+        "mainFolder": "Y:\\hylab\\",
+        "folder": "Y:\\hylab\\raw_data\\",
+        "name": "hylabVArsip"
+    },
+    {
+        "mainFolder": "Y:\\monitoring\\",
+        "folder": "Y:\\monitoring\\RFIDCAM\\",
+        "name": "RFIDVArsip"
+    },
+    {
+        "mainFolder": "Y:\\powercam\\",
+        "folder": "Y:\\powercam\\Hasil_Kamera\\",
+        "name": "powerCamArsip"
     }
 ];
+
+// const folders = [
+//     {
+//       "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\",
+//         "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA",
+//       "name":"waterMeterArsip"
+//     },
+//     {
+//       "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\",
+//         "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\IMAGE",
+//         "name":"waterParkingArsip"
+
+//     }
+//    ];
 
 // Fungsi untuk mendapatkan tanggal kemarin dalam format YYYY-MM-DD
 function getYesterdayDate() {
@@ -48,7 +80,7 @@ async function moveImages() {
     const promises = folders.map(folder => {
         const data = {
             sourceFolder: folder.folder,
-            destinationFolder: path.join(folder.mainFolder, yesterdayDate)
+            destinationFolder: path.join(`${folder.mainFolder}\\${folder.name}`, `${yesterdayDate}`)
         };
         console.log(`Semua file folde ${data.sourceFolder} telah berhasil dipindahkan ke ${data.destinationFolder}`);
         return startWorker(data);
@@ -64,18 +96,18 @@ async function moveImages() {
 
 const main = async () => {
 
-    cron.schedule('0 0 * * *', () => {
-        moveImages();
-    });
-
-    console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap hari pada pukul 12 malam');
-
-    // Jadwalkan script untuk dijalankan setiap 1 menit
-    // cron.schedule('* * * * *', () => {
+    // cron.schedule('0 0 * * *', () => {
     //     moveImages();
     // });
 
-    // console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap menit');
+    // console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap hari pada pukul 12 malam');
+
+    // Jadwalkan script untuk dijalankan setiap 1 menit
+    cron.schedule('* * * * *', () => {
+        moveImages();
+    });
+
+    console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap menit');
 }
 
 module.exports = { main }
