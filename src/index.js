@@ -5,9 +5,9 @@ const { Worker } = require('worker_threads');
 
 const folders = [
     {
-        "mainFolder": "V:\\ftpparking\\",
-        "folder": "V:\\ftpparking\\watermeter\\",
-        "name": "waterMeterArsip"
+        "mainFolder": "Y:\\hydrocam\\",
+        "folder": "Y:\\hydrocam\\hydrocam\data\\",
+        "name": "hydrocamArsip"
     },
     {
         "mainFolder": "V:\\ftpparking\\",
