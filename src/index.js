@@ -80,15 +80,22 @@ async function moveImages() {
 }
 
 const main = async () => {
-    // Jadwalkan script untuk dijalankan setiap 1 menit
-    cron.schedule('* * * * *', () => {
+    cron.schedule('0 0 * * *', () => {
         console.log('Menjalankan tugas pemindahan file pada', new Date());
         moveImages();
     });
 
-    console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap menit');
+    console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap hari pada pukul 12 malam');
+
+    // Jadwalkan script untuk dijalankan setiap 1 menit
+    // cron.schedule('* * * * *', () => {
+    //     console.log('Menjalankan tugas pemindahan file pada', new Date());
+    //     moveImages();
+    // });
+
+    // console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap menit');
 }
 
 main();
 
-module.exports={main}
+module.exports = { main }
