@@ -14,13 +14,13 @@ Pastikan Anda memiliki Node.js dan npm terinstal di sistem Anda. Anda juga perlu
 
    ```bash
    npm install
-`# 
- #`
+`# #`
+
 ## Setup Folder
 
 1. Edit bagian folders dalam file src/index.js untuk menyesuaikan dengan jalur folder yang ingin Anda pindahkan:
 
- ```bash
+ ```javascript
 const folders = [
   {
     "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA",
@@ -31,7 +31,9 @@ const folders = [
     "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\IMAGE"
   }
 ];
- `# 
- #`
+
+ `# #`
+
 ## Menjalakankan Worker
+ ```bash
 npm start
