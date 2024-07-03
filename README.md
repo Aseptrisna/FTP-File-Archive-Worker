@@ -14,9 +14,12 @@ Pastikan Anda memiliki Node.js dan npm terinstal di sistem Anda. Anda juga perlu
 
    ```bash
    npm install
+   
 ## Setup Folder
 
 4.Edit bagian folders dalam file src/index.js untuk menyesuaikan dengan jalur folder yang ingin Anda pindahkan:
+
+ ```bash
 const folders = [
   {
     "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA",
