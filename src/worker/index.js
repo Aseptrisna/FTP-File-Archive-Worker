@@ -1,33 +1,33 @@
-const { workerData, parentPort } = require('worker_threads');
+const { parentPort, workerData } = require('worker_threads');
 const fs = require('fs');
 const path = require('path');
 
 const { sourceFolder, destinationFolder } = workerData;
 
-// Membuat folder tujuan jika belum ada
 if (!fs.existsSync(destinationFolder)) {
-  fs.mkdirSync(destinationFolder, { recursive: true });
+    fs.mkdirSync(destinationFolder, { recursive: true });
 }
 
-// Membaca file di folder asal
 fs.readdir(sourceFolder, (err, files) => {
-  if (err) {
-    parentPort.postMessage(`Error reading source folder: ${err.message}`);
-    return;
-  }
-
-  files.forEach(file => {
-    const sourcePath = path.join(sourceFolder, file);
-    const destinationPath = path.join(destinationFolder, file);
-
-    // Memindahkan file
-    fs.rename(sourcePath, destinationPath, err => {
-      if (err) {
-        parentPort.postMessage(`Error moving file ${file}: ${err.message}`);
+    if (err) {
+        console.error(`Gagal membaca folder sumber: ${sourceFolder}`, err);
+        parentPort.postMessage('failed');
         return;
-      }
-    });
-  });
+    }
 
-  parentPort.postMessage(`Files moved to ${destinationFolder}`);
+    files.forEach(file => {
+        const sourcePath = path.join(sourceFolder, file);
+        const destinationPath = path.join(destinationFolder, file);
+
+        fs.rename(sourcePath, destinationPath, err => {
+            if (err) {
+                console.error(`Gagal memindahkan file ${file}`, err);
+                parentPort.postMessage('failed');
+            } else {
+                console.log(`File ${file} telah dipindahkan ke ${destinationPath}`);
+            }
+        });
+    });
+
+    parentPort.postMessage('done');
 });

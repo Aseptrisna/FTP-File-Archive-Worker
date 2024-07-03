@@ -4,7 +4,6 @@ const cron = require('node-cron');
 const { Worker } = require('worker_threads');
 
 const folders = [
-    //1. Watermeter
     {
         "mainFolder": "V:\\ftpparking\\",
         "folder": "V:\\ftpparking\\watermeter\\",
@@ -31,20 +30,6 @@ const folders = [
         "name": "powerCamArsip"
     }
 ];
-
-// const folders = [
-//     {
-//       "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\",
-//         "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\DATA",
-//       "name":"waterMeterArsip"
-//     },
-//     {
-//       "mainFolder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\",
-//         "folder": "C:\\ASEP TRISNA SETIAWAN\\FILE\\IMAGE",
-//         "name":"waterParkingArsip"
-
-//     }
-//    ];
 
 // Fungsi untuk mendapatkan tanggal kemarin dalam format YYYY-MM-DD
 function getYesterdayDate() {
@@ -82,7 +67,7 @@ async function moveImages() {
             sourceFolder: folder.folder,
             destinationFolder: path.join(`${folder.mainFolder}\\${folder.name}`, `${yesterdayDate}`)
         };
-        console.log(`Semua file folde ${data.sourceFolder} telah berhasil dipindahkan ke ${data.destinationFolder}`);
+        console.log(`Memulai pemindahan file dari ${data.sourceFolder} ke ${data.destinationFolder}`);
         return startWorker(data);
     });
 
@@ -95,19 +80,13 @@ async function moveImages() {
 }
 
 const main = async () => {
-
-    // cron.schedule('0 0 * * *', () => {
-    //     moveImages();
-    // });
-
-    // console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap hari pada pukul 12 malam');
-
     // Jadwalkan script untuk dijalankan setiap 1 menit
     cron.schedule('* * * * *', () => {
+        console.log('Menjalankan tugas pemindahan file pada', new Date());
         moveImages();
     });
 
     console.log('Script berjalan dan dijadwalkan untuk dijalankan setiap menit');
 }
 
-module.exports = { main }
+main();
