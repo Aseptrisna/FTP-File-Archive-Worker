@@ -5,10 +5,10 @@ const { Worker } = require('worker_threads');
 
 const folders = [
     {
-        "mainFolder": "Y:\\powercam\\",
-        "folder": "Y:\\powercam\\Hasil_Kamera\\",
-        "name": "powerCamArsip"
-    }
+        "mainFolder": "V:\\ftpparking\\",
+        "folder": "V:\\ftpparking\\data\\",
+        "name": "kamaeraCCTVArsip"
+    },
 ];
 
 // Fungsi untuk mendapatkan tanggal kemarin dalam format YYYY-MM-DD
