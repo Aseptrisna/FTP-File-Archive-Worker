@@ -5,9 +5,9 @@ const { Worker } = require('worker_threads');
 
 const folders = [
     {
-        "mainFolder": "Y:\\hydrocam\\",
-        "folder": "Y:\\hydrocam\\hydrocam\data\\",
-        "name": "hydrocamArsip"
+        "mainFolder": "Y:\\powercam\\",
+        "folder": "Y:\\powercam\\Hasil_Kamera\\",
+        "name": "powerCamArsip"
     }
 ];
 
