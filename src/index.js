@@ -5,9 +5,9 @@ const { Worker } = require('worker_threads');
 
 const folders = [
     {
-        "mainFolder": "V:\\ftpparking\\",
-        "folder": "V:\\ftpparking\\data\\",
-        "name": "kamaeraCCTVArsip"
+        "mainFolder": "Y:\\monitoring\\",
+        "folder": "Y:\\monitoring\\RFIDCAM\\",
+        "name": "RFIDVArsip"
     },
 ];
 
