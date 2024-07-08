@@ -5,9 +5,9 @@ const { Worker } = require('worker_threads');
 
 const folders = [
     {
-        "mainFolder": "Y:\\hylab\\",
-        "folder": "Y:\\hylab\\raw_data\\",
-        "name": "hylabVArsip"
+        "mainFolder": "Y:\\hydrocam\\",
+        "folder": "Y:\\hydrocam\\hydrocam\data\\",
+        "name": "hydrocamArsip"
     }
 ];
 
